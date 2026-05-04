@@ -49,4 +49,14 @@ public class TransactionRecord {
     }
     public float getAmount() { return amount; }
     public void setAmount(float amount) { this.amount = amount; }
+    @Column(nullable = false)
+        private float incentive;
+
+        public float getIncentive() {
+             return incentive;
+    }
+
+        public void setIncentive(float incentive) {
+              this.incentive = incentive;
+        }
 }
