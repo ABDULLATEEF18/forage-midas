@@ -34,10 +34,11 @@ public class TransactionRecord {
 
     public TransactionRecord(UserRecord sender, 
                              UserRecord recipient, 
-                             float amount) {
+                             float amount, float incentive) {
         this.sender = sender;
         this.recipient = recipient;
         this.amount = amount;
+        this.incentive = incentive;
     }
 
     public Long getId() { return id; }

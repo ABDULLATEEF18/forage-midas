@@ -22,10 +22,10 @@ public class TransactionIngestor {
     @Autowired
     private TransactionValidationService validationService;
 
-    @Autowired
-    private IncentiveService incentiveService;
+    @Autowired 
+private IncentiveService incentiveService;
 
-    @Transactional
+@Transactional
 public void processTransaction(Transaction transaction) {
 
     if (!validationService.isValid(transaction)) {
@@ -39,7 +39,7 @@ public void processTransaction(Transaction transaction) {
     sender.setBalance(sender.getBalance() - transaction.getAmount());
     recipient.setBalance(recipient.getBalance() + transaction.getAmount());
 
-    // Get and apply incentive
+    // Call incentive API
     float incentiveAmount = incentiveService.getIncentive(transaction);
     if (incentiveAmount > 0) {
         System.out.println("INCENTIVE: " + incentiveAmount + 
@@ -51,7 +51,7 @@ public void processTransaction(Transaction transaction) {
     userRepository.save(recipient);
 
     transactionRecordRepository.save(
-        new TransactionRecord(sender, recipient, transaction.getAmount())
+        new TransactionRecord(sender, recipient, transaction.getAmount(), incentiveAmount)
     );
 
     // Track wilbur
@@ -60,5 +60,4 @@ public void processTransaction(Transaction transaction) {
         System.out.println(">>> WILBUR CURRENT BALANCE: " + wilbur.getBalance());
     }
 }
-
 }

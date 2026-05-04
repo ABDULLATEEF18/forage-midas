@@ -15,7 +15,7 @@ public class IncentiveService {
 
     public float getIncentive(Transaction transaction) {
         try {
-            String url = "http://localhost:8080/incentive";
+            String url = "http://localhost:8081/incentive";
             Incentive incentive = restTemplate.postForObject(
                 url, transaction, Incentive.class
             );

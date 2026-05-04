@@ -17,3 +17,4 @@ public class MidasCoreApplication {
         return new RestTemplate();
     }
 }
+
